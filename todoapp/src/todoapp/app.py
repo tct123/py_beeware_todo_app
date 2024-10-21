@@ -74,8 +74,11 @@ class ToDoApp(toga.App):
             __tablename__ = 'todos'
             id = Column(Integer, primary_key=True, autoincrement=True)
             text = Column(String, nullable=False)
-
-        engine = create_engine('sqlite:////the-path-should-be-here/todos.db')
+        
+        print(self.paths.data)
+        self.paths.data.mkdir(exist_ok=True, parents=True)
+        path = str(self.paths.data)
+        engine = create_engine(f'sqlite:///{path}/todos.db')
         Base.metadata.create_all(engine)
         Session = sessionmaker(bind=engine)
         session = Session()
