@@ -30,13 +30,13 @@ test_requires = [
 [tool.briefcase.app.todoapp.macOS]
 universal_build = true
 requires = [
-    "toga-cocoa~=0.4.5",
+    "toga-cocoa~=0.4.8",
     "std-nslog~=1.0.0",
 ]
 
 [tool.briefcase.app.todoapp.linux]
 requires = [
-    "toga-gtk~=0.4.5",
+    "toga-gtk~=0.4.8",
 ]
 
 [tool.briefcase.app.todoapp.linux.system.debian]
@@ -151,19 +151,19 @@ flatpak_sdk = "org.gnome.Sdk"
 
 [tool.briefcase.app.todoapp.windows]
 requires = [
-    "toga-winforms~=0.4.5",
+    "toga-winforms~=0.4.8",
 ]
 
 # Mobile deployments
 [tool.briefcase.app.todoapp.iOS]
 requires = [
-    "toga-iOS~=0.4.5",
+    "toga-iOS~=0.4.8",
     "std-nslog~=1.0.0",
 ]
 
 [tool.briefcase.app.todoapp.android]
 requires = [
-    "toga-android~=0.4.5",
+    "toga-android~=0.4.8",
 ]
 
 base_theme = "Theme.MaterialComponents.Light.DarkActionBar"
@@ -179,7 +179,7 @@ build_gradle_dependencies = [
 # Web deployments
 [tool.briefcase.app.todoapp.web]
 requires = [
-    "toga-web~=0.4.5",
+    "toga-web~=0.4.8",
 ]
 style_framework = "Shoelace v2.3"
 

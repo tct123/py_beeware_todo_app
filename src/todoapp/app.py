@@ -27,12 +27,42 @@ class ToDoApp(toga.App):
         self.gui(self)
 
     def gui(self, widget):
-        self.main_box = toga.Box(style=Pack(direction=COLUMN,padding=5,alignment=LEFT,background_color=COLORS_DATA["Blue"][0]))
-        self.buttons_box = toga.Box(style=Pack(direction=ROW,padding=5,alignment=LEFT,background_color=COLORS_DATA["Blue"][1]))
-        self.todo_box = toga.Box(style=Pack(direction=COLUMN,padding=5,alignment=LEFT,background_color=COLORS_DATA["Blue"][0]))
-        self.todo_container = toga.ScrollContainer(content=self.todo_box, style=Pack(flex=1))
-        self.todo_text = toga.TextInput(placeholder="Task description",style=Pack(padding=5, width=300, alignment=LEFT),)
-        self.add_todo = toga.Button(text="Add task",on_press=lambda widget: self.add_task(task=self.todo_text.value),style=Pack(padding=5, width=150, alignment=LEFT, flex=1))
+        self.main_box = toga.Box(
+            style=Pack(
+                direction=COLUMN,
+                padding=5,
+                alignment=LEFT,
+                background_color=COLORS_DATA["Blue"][0],
+            )
+        )
+        self.buttons_box = toga.Box(
+            style=Pack(
+                direction=ROW,
+                padding=5,
+                alignment=LEFT,
+                background_color=COLORS_DATA["Blue"][1],
+            )
+        )
+        self.todo_box = toga.Box(
+            style=Pack(
+                direction=COLUMN,
+                padding=5,
+                alignment=LEFT,
+                background_color=COLORS_DATA["Blue"][0],
+            )
+        )
+        self.todo_container = toga.ScrollContainer(
+            content=self.todo_box, style=Pack(flex=1)
+        )
+        self.todo_text = toga.TextInput(
+            placeholder="Task description",
+            style=Pack(padding=5, width=300, alignment=LEFT),
+        )
+        self.add_todo = toga.Button(
+            text="Add task",
+            on_press=lambda widget: self.add_task(task=self.todo_text.value),
+            style=Pack(padding=5, width=150, alignment=LEFT, flex=1),
+        )
         self.buttons_box.add(self.todo_text, self.add_todo)
         self.main_box.add(self.buttons_box, self.todo_container)
         self.main_window.content = self.main_box
@@ -53,14 +83,29 @@ class ToDoApp(toga.App):
 
     def build_task(self, task):
         todo = toga.Label(text=task)
-        todo_frame = toga.Box(style=Pack(direction=COLUMN,padding=5,alignment=LEFT,background_color=COLORS_DATA["Blue"][2]))
-        todo_box = toga.Box(style=Pack(direction=COLUMN,padding=5,alignment=LEFT,background_color=COLORS_DATA["Blue"][1]))
+        todo_frame = toga.Box(
+            style=Pack(
+                direction=COLUMN,
+                padding=5,
+                alignment=LEFT,
+                background_color=COLORS_DATA["Blue"][2],
+            )
+        )
+        todo_box = toga.Box(
+            style=Pack(
+                direction=COLUMN,
+                padding=5,
+                alignment=LEFT,
+                background_color=COLORS_DATA["Blue"][1],
+            )
+        )
         todo_box.add(todo)
         todo_frame.add(todo_box)
         self.todo_box.add(todo_frame)
-        
+
     def save_items_to_db(self, item):
         Base = declarative_base()
+
         class Todos(Base):
             __tablename__ = "todos"
             id = Column(Integer, primary_key=True, autoincrement=True)
@@ -77,9 +122,10 @@ class ToDoApp(toga.App):
         session.add(todo)
         session.commit()
         session.close()
-    
+
     def fill_list_from_db(self):
         Base = declarative_base()
+
         class Todos(Base):
             __tablename__ = "todos"
             id = Column(Integer, primary_key=True, autoincrement=True)
@@ -95,6 +141,7 @@ class ToDoApp(toga.App):
         todos = session.query(Todos).all()
         for todo in todos:
             self.data.append(todo.text)
+
 
 def main():
     return ToDoApp()
